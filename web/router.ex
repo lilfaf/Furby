@@ -7,6 +7,7 @@ defmodule Furby.Router do
     plug :fetch_flash
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :assign_access_token
   end
 
   pipeline :api do
@@ -16,11 +17,17 @@ defmodule Furby.Router do
   scope "/", Furby do
     pipe_through :browser # Use the default browser stack
 
-    get "/", PageController, :index
+    get "/", HomeController, :index
+    get "auth/callback", AuthController, :callback
+    delete "/logout", AuthController, :delete
   end
 
   # Other scopes may use custom stacks.
   # scope "/api", Furby do
   #   pipe_through :api
   # end
+
+  defp assign_access_token(conn, _) do
+    assign(conn, :current_user, get_session(conn, :current_user))
+  end
 end

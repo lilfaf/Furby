@@ -1,0 +1,11 @@
+<div class="jumbotron">
+  <h2>Welcome to Furby!</h2>
+  <p class="lead">Lets bridge the gap between old school emails and Slack.</p>
+
+  <%= if @current_user do %>
+    <p>Connected as <%= @current_user.user %></p>
+    <%= link "Log out", to: auth_path(@conn, :delete), method: :delete, class: "btn btn-lg btn-danger" %>
+  <% else %>
+    <%= link "Log in with Slack", to: authorize_url, class: "btn btn-lg btn-primary" %>
+  <% end %>
+</div>

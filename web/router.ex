@@ -20,6 +20,8 @@ defmodule Furby.Router do
     get "/", HomeController, :index
     get "auth/callback", AuthController, :callback
     delete "/logout", AuthController, :delete
+
+    get "channels", ChannelsController, :index
   end
 
   # Other scopes may use custom stacks.

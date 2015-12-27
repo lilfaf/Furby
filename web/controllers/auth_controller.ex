@@ -14,7 +14,7 @@ defmodule Furby.AuthController do
     conn
     |> put_session(:access_token, token.access_token)
     |> put_session(:current_user, user)
-    |> redirect(to: "/")
+    |> redirect(to: "/channels")
   end
 
   def callback(conn, params) do

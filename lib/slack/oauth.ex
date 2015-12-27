@@ -24,7 +24,7 @@ defmodule Slack.OAuth do
     |> Client.new()
   end
 
-  def authorize_url!(scopes, params \\ []) do
+  def authorize_url!(scopes \\ [], params \\ []) do
     scope =
       scopes ++ @default_scopes
       |> Enum.uniq

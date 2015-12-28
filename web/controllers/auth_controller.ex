@@ -1,8 +1,6 @@
 defmodule Furby.AuthController do
   use Furby.Web, :controller
 
-  alias Phoenix.Controller.Flash
-
   defmodule User do
     defstruct [:team, :user, :team_id, :user_id]
   end
@@ -17,7 +15,7 @@ defmodule Furby.AuthController do
     |> redirect(to: "/channels")
   end
 
-  def callback(conn, params) do
+  def callback(conn, _params) do
     conn
     |> put_flash(:error, "Oups! Access denied.")
     |> redirect(to: "/")
@@ -31,10 +29,9 @@ defmodule Furby.AuthController do
 
   defp get_user(token) do
     case Slack.Client.get("/auth.test", token) do
-      {:ok, %{body: body}} -> struct(User, body)
-      {:error, error} ->
+      %{ok: true} = data -> struct(User, data)
+      %Slack.Error{} = error ->
         IO.inspect error
-        nil
     end
   end
 end

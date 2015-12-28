@@ -10,7 +10,18 @@ defmodule Slack.Client do
     Poison.decode!(body, keys: :atoms)
   end
 
+  defp handle_response(response) do
+    case response do
+      {:ok, %HTTPoison.Response{body: %{ok: true} = body}} -> body
+      {:ok, %HTTPoison.Response{body: %{ok: false, error: error}}} ->
+        %Slack.Error{reason: error}
+      {:error, %HTTPoison.Error{reason: reason}} ->
+        %Slack.Error{reason: reason}
+    end
+  end
+
   def get(url, token) do
     request(:get, url, "", [], [params: %{token: token}])
+    |> handle_response
   end
 end

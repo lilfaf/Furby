@@ -6,6 +6,6 @@
     <p>Connected as <%= @current_user.user %></p>
     <%= link "Log out", to: auth_path(@conn, :delete), method: :delete, class: "btn btn-lg btn-danger" %>
   <% else %>
-    <%= link "Log in with Slack", to: authorize_url, class: "btn btn-lg btn-primary" %>
+    <%= link "Log in with Slack", to: Slack.OAuth.authorize_url! , class: "btn btn-lg btn-primary" %>
   <% end %>
 </div>

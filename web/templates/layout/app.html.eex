@@ -12,7 +12,18 @@
   </head>
 
   <body>
+
     <div class="container" role="main">
+
+      <div class="header clearfix">
+        <ul class="nav nav-pills pull-right">
+          <%= if @current_user do %>
+            <li><%= link "Log out", to: auth_path(@conn, :delete), method: :delete %></li>
+          <% else %>
+            <li><%= link "Log in with Slack", to: Slack.OAuth.authorize_url! %></li>
+          <% end %>
+        </ul>
+      </div>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>

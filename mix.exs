@@ -10,7 +10,9 @@ defmodule Furby.Mixfile do
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      aliases: aliases,
-     deps: deps]
+     deps: deps,
+     test_coverage: [tool: ExCoveralls],
+     preferred_cli_env: [coveralls: :test]]
   end
 
   # Configuration for the OTP application.
@@ -37,7 +39,9 @@ defmodule Furby.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
      {:httpoison, "~> 0.8.0"},
-     {:ueberauth_slack, "~> 0.2"}]
+     {:ueberauth_slack, "~> 0.2"},
+     {:excoveralls, "~> 0.3", only: [:dev, :test]}
+    ]
     end
 
   # Aliases are shortcut or tasks specific to the current project.

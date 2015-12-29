@@ -1,5 +1,8 @@
 # Furby
 
+[![Build Status](https://travis-ci.org/lilfaf/furby.svg)](https://travis-ci.org/lilfaf/furby)
+[![Coverage Status](https://coveralls.io/repos/lilfaf/furby/badge.svg?branch=master&service=github)](https://coveralls.io/github/lilfaf/furby?branch=master)
+
 To start your Phoenix app:
 
   1. Install dependencies with `mix deps.get`

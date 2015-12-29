@@ -19,7 +19,7 @@ defmodule Furby.Mixfile do
   def application do
     [mod: {Furby, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex, :oauth2, :httpoison]]
+                    :phoenix_ecto, :postgrex, :httpoison, :ueberauth_slack]]
   end
 
   # Specifies which paths to compile per environment.
@@ -36,8 +36,8 @@ defmodule Furby.Mixfile do
      {:phoenix_html, "~> 2.1"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:cowboy, "~> 1.0"},
-     {:oauth2, "~> 0.5"},
-     {:httpoison, "~> 0.8.0"}]
+     {:httpoison, "~> 0.8.0"},
+     {:ueberauth_slack, "~> 0.2"}]
     end
 
   # Aliases are shortcut or tasks specific to the current project.

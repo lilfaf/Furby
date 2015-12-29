@@ -20,7 +20,7 @@
           <%= if @current_user do %>
             <li><%= link "Log out", to: auth_path(@conn, :delete), method: :delete %></li>
           <% else %>
-            <li><%= link "Log in with Slack", to: Slack.OAuth.authorize_url! %></li>
+            <li><%= link "Log in with Slack", to: "auth/slack" %></li>
           <% end %>
         </ul>
       </div>

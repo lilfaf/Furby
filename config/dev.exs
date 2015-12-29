@@ -41,7 +41,6 @@ config :furby, Furby.Repo,
   hostname: "localhost",
   pool_size: 10
 
-config :furby, Slack.OAuth,
+config :ueberauth, Ueberauth.Strategy.Slack.OAuth,
   client_id: System.get_env("SLACK_CLIENT_ID"),
-  client_secret: System.get_env("SLACK_CLIENT_SECRET"),
-  redirect_uri: System.get_env("SLACK_REDIRECT_URI")
+  client_secret: System.get_env("SLACK_CLIENT_SECRET")

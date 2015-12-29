@@ -12,11 +12,12 @@ defmodule Slack.Client do
 
   defp handle_response(response) do
     case response do
-      {:ok, %HTTPoison.Response{body: %{ok: true} = body}} -> body
+      {:ok, %HTTPoison.Response{body: %{ok: true} = body}} ->
+        {:ok, body}
       {:ok, %HTTPoison.Response{body: %{ok: false, error: error}}} ->
-        %Slack.Error{reason: error}
+        {:error, reason: error}
       {:error, %HTTPoison.Error{reason: reason}} ->
-        %Slack.Error{reason: reason}
+        {:error, reason: reason}
     end
   end
 

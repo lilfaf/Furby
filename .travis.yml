@@ -5,5 +5,4 @@ otp_release:
   - 18.0
 before_script:
   - phantomjs -w on localhost > /dev/null &
-after_script:
-  - MIX_ENV=test mix do deps.get, compile, coveralls.travis
+script: MIX_ENV=test mix do deps.get, compile, coveralls.travis

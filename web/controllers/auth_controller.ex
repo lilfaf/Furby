@@ -21,16 +21,16 @@ defmodule Furby.AuthController do
   end
 
   def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-    case find_or_create_user(auth) do
+    case Furby.User.from_ueberauth(auth) do
       {:ok, user} ->
         conn
-        |> put_flash(:info, "Successfully authenticated.")
+        |> put_flash(:info, "Successfully authenticated")
         |> put_session(:access_token, auth.extra.raw_info.token.access_token)
         |> put_session(:current_user, user)
         |> redirect(to: "/")
-      {:error, reason} ->
+      {:error, _changeset} ->
         conn
-        |> put_flash(:error, reason)
+        |> put_flash(:error, "Invalid informations from Slack")
         |> redirect(to: "/")
     end
   end

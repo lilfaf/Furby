@@ -5,10 +5,10 @@ defmodule Furby.UserTest do
 
   @valid_attrs %{
     access_token: "123",
-    avatar: "http://placeholder.com/avatar",
+    image: "http://placeholder.com/avatar",
     name: "John Doe",
     nickname: "jdoe",
-    slack_user_id: "AB123"
+    email: "example@mail.com"
   }
   @invalid_attrs %{}
 

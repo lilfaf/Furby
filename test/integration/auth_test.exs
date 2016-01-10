@@ -10,8 +10,5 @@ defmodule Integration.AuthenticationTest do
 
     click find_element :id, "home-login-btn"
     assert page_source =~ "Connected as Louis Larpin"
-
-    click find_element :id, "home-logout-btn"
-    refute page_source =~ "Connected as Louis Larpin"
   end
 end

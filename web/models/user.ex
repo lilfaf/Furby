@@ -28,7 +28,7 @@ defmodule Furby.User do
   def from_ueberauth(%Ueberauth.Auth{} = auth) do
     user_params =
       auth.info
-      |> Map.merge(%{access_token: auth.extra.raw_info.token.access_token})
+      |> Map.merge(%{access_token: auth.credentials.token})
       |> Map.from_struct
 
     case Furby.Repo.get_by(__MODULE__, email: auth.info.email) do

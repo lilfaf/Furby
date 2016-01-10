@@ -20,6 +20,5 @@ config :furby, Furby.Repo,
 
 config :hound, driver: "phantomjs"
 
-config :ueberauth, Ueberauth.Strategy.Slack.OAuth,
-  client_id: System.get_env("SLACK_CLIENT_ID"),
-  client_secret: System.get_env("SLACK_CLIENT_SECRET")
+config :ueberauth, Ueberauth,
+  providers: [slack: { Furby.SlackStrategy, [] }]

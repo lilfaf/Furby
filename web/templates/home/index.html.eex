@@ -4,8 +4,8 @@
 
   <%= if @current_user do %>
     <p>Connected as <%= @current_user.name %></p>
-    <%= link "Log out", to: auth_path(@conn, :delete), method: :delete, class: "btn btn-lg btn-danger" %>
+    <%= link "Log out", to: auth_path(@conn, :delete), method: :delete, class: "btn btn-lg btn-danger", id: "home-logout-btn" %>
   <% else %>
-    <%= link "Log in with Slack", to: "/auth/slack" , class: "btn btn-lg btn-primary" %>
+    <%= link "Log in with Slack", to: "/auth/slack" , class: "btn btn-lg btn-primary", id: "home-login-btn" %>
   <% end %>
 </div>

@@ -25,7 +25,6 @@ defmodule Furby.AuthController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "Successfully authenticated")
-        |> put_session(:access_token, auth.extra.raw_info.token.access_token)
         |> put_session(:current_user, user)
         |> redirect(to: "/")
       {:error, _changeset} ->

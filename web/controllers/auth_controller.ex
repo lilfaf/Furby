@@ -3,10 +3,6 @@ defmodule Furby.AuthController do
 
   plug Ueberauth
 
-  defp find_or_create_user(%Ueberauth.Auth{} = auth) do
-    {:ok, auth.info}
-  end
-
   def delete(conn, _params) do
     conn
     |> put_flash(:info, "You have been logged out!")
@@ -26,7 +22,7 @@ defmodule Furby.AuthController do
         conn
         |> put_flash(:info, "Successfully authenticated")
         |> put_session(:current_user, user)
-        |> redirect(to: "/")
+        |> redirect(to: "/channels")
       {:error, _changeset} ->
         conn
         |> put_flash(:error, "Invalid informations from Slack")

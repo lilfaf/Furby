@@ -16,8 +16,8 @@ defmodule Furby.ChannelsController do
                :topic]
   end
 
-  def index(conn, _) do
-    token = get_session(conn, :access_token)
+  def index(conn, _params) do
+    token = get_session(conn, :current_user).access_token
 
     case Slack.Client.get("/channels.list", token) do
       {:ok, %{channels: channels}} ->
@@ -27,7 +27,7 @@ defmodule Furby.ChannelsController do
       {:error, reason: reason} ->
         conn
         |> put_flash(:error, reason)
-        |> redirect(to: "/")
+        |> render("index.html", channels: [])
     end
   end
 end

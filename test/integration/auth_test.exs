@@ -6,9 +6,9 @@ defmodule Integration.AuthenticationTest do
 
   test "user sign in with slack successfully" do
     navigate_to "http://localhost:4001"
-    assert page_source =~ "Welcome to Furby!"
-
     click find_element :id, "home-login-btn"
-    assert page_source =~ "Connected as Louis Larpin"
+
+    assert page_source =~ "Successfully authenticated"
+    assert current_path == "/channels"
   end
 end

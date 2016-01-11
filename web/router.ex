@@ -27,6 +27,7 @@ defmodule Furby.Router do
 
     get "/", HomeController, :index
     get "channels", ChannelsController, :index
+    put "channels", ChannelsController, :update
   end
 
   # Other scopes may use custom stacks.

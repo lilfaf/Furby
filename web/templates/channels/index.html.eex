@@ -7,3 +7,5 @@
     <li># <%= channel.name %></li>
   <% end %>
 </ul>
+
+<%= link "Refresh", to: channels_path(@conn, :update), method: :put, class: "btn btn-lg btn-primary", id: "channels-refresh-btn" %>

@@ -2,6 +2,9 @@ defmodule Furby.User do
   use Furby.Web, :model
 
   schema "users" do
+    has_many :user_channels, Furby.UserChannel
+    has_many :channels, through: [:user_channels, :channels]
+
     field :email, :string
     field :name, :string
     field :nickname, :string

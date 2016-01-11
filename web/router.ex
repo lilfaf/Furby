@@ -10,24 +10,28 @@ defmodule Furby.Router do
     plug :assign_current_user
   end
 
+  pipeline :browser_session do
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
 
-  scope "/auth", Furby do
-    pipe_through :browser
-
-    get "/:provider", AuthController, :request
-    get "/:provider/callback", AuthController, :callback
-    delete "/logout", AuthController, :delete
-  end
-
   scope "/", Furby do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :browser_session] # Use the default browser stack
 
-    get "/", HomeController, :index
+    scope "/auth" do
+      get "/:provider", AuthController, :request
+      get "/:provider/callback", AuthController, :callback
+      delete "/logout", AuthController, :delete
+    end
+
     get "channels", ChannelsController, :index
     put "channels", ChannelsController, :update
+
+    get "/", HomeController, :index
   end
 
   # Other scopes may use custom stacks.

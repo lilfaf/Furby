@@ -40,6 +40,7 @@ defmodule Furby.Mixfile do
      {:cowboy, "~> 1.0"},
      {:httpoison, "~> 0.8.0"},
      {:ueberauth_slack, "~> 0.2"},
+     {:guardian, "~> 0.9.0"},
      {:excoveralls, "~> 0.3", only: [:dev, :test]},
      {:hound, "~> 0.7.6"}
     ]

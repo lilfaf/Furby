@@ -22,6 +22,15 @@ config :logger, :console,
 config :ueberauth, Ueberauth,
   providers: [slack: {Ueberauth.Strategy.Slack, [default_scope: "users:read,channels:read"]}]
 
+config :guardian, Guardian,
+  allowed_algos: ["HS512"],
+  verify_module: Guardian.JWT,
+  issuer: "Furby",
+  ttl: { 30, :days },
+  verify_issuer: true,
+  secret_key: "CBb/DvFjqGjSA9zsOHF4kdsbfSaubmTuwgWdBjaYE7wd6JRekktAOySlU9upaceR",
+  serializer: Furby.GuardianSerializer
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"

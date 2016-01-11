@@ -4,9 +4,8 @@ defmodule Furby.AuthController do
   plug Ueberauth
 
   def delete(conn, _params) do
-    conn
+    Guardian.Plug.sign_out(conn)
     |> put_flash(:info, "You have been logged out!")
-    |> configure_session(drop: true)
     |> redirect(to: "/")
   end
 
@@ -21,7 +20,7 @@ defmodule Furby.AuthController do
       {:ok, user} ->
         conn
         |> put_flash(:info, "Successfully authenticated")
-        |> put_session(:current_user, user)
+        |> Guardian.Plug.sign_in(user, :token)
         |> redirect(to: "/channels")
       {:error, _changeset} ->
         conn

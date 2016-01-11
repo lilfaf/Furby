@@ -20,5 +20,6 @@ defmodule Furby.UserTest do
   test "changeset with invalid attributes" do
     changeset = User.changeset(%User{}, @invalid_attrs)
     refute changeset.valid?
+    assert {:access_token, "can't be blank"} in changeset.errors
   end
 end

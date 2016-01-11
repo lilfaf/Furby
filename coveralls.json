@@ -1,0 +1,8 @@
+{
+  "skip_files": [
+    "test/support/channel_case.ex",
+    "test/support/conn_case.ex",
+    "test/support/model_case.ex",
+    "test/support/slack_strategy.ex"
+  ]
+}

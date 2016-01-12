@@ -9,6 +9,7 @@ defmodule Integration.AuthenticationTest do
     click find_element :id, "home-login-btn"
 
     assert page_source =~ "Successfully authenticated"
+    assert page_source =~ "Log out"
     assert current_path == "/channels"
   end
 end

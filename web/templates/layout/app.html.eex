@@ -17,7 +17,7 @@
 
       <div class="header clearfix">
         <ul class="nav nav-pills pull-right">
-          <%= if @current_user do %>
+          <%= if Guardian.Plug.current_resource(@conn) do %>
             <li><%= link "Log out", to: auth_path(@conn, :delete), method: :delete %></li>
           <% else %>
             <li><%= link "Log in with Slack", to: "auth/slack" %></li>

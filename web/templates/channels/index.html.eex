@@ -2,10 +2,19 @@
   <h1>Yay! <small>These are all the channels which you belong.</small></h1>
 </div>
 
-<ul class="list-unstyled">
-  <%= for channel <- @channels do %>
-    <li># <%= channel.name %></li>
-  <% end %>
-</ul>
+<%= link "Refresh", to: channels_path(@conn, :update), method: :put, class: "btn btn-primary", id: "channels-refresh-btn" %>
 
-<%= link "Refresh", to: channels_path(@conn, :update), method: :put, class: "btn btn-lg btn-primary", id: "channels-refresh-btn" %>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for channel <- @channels do %>
+      <tr>
+        <td># <%= channel.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

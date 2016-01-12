@@ -21,7 +21,7 @@ defmodule Furby.Mixfile do
   def application do
     [mod: {Furby, []},
      applications: [:phoenix, :phoenix_html, :cowboy, :logger,
-                    :phoenix_ecto, :postgrex, :httpoison, :ueberauth_slack]]
+                    :phoenix_ecto, :postgrex, :httpoison, :ueberauth_slack, :ex_machina]]
   end
 
   # Specifies which paths to compile per environment.
@@ -41,6 +41,7 @@ defmodule Furby.Mixfile do
      {:httpoison, "~> 0.8.0"},
      {:ueberauth_slack, "~> 0.2"},
      {:guardian, "~> 0.9.0"},
+     {:ex_machina, "~> 0.6.1"},
      {:excoveralls, "~> 0.3", only: [:dev, :test]},
      {:hound, "~> 0.7.6"}
     ]

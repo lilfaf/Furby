@@ -19,11 +19,11 @@ defmodule Furby.ChannelsController do
 
         conn
         |> put_flash(:info, "Channels updated successfully.")
-        |> render("index.html", channels: channels)
+        |> redirect(to: "/channels")
       {:error, reason: reason} ->
         conn
         |> put_flash(:error, reason)
-        |> render("index.html", channels: [])
+        |> redirect(to: "/channels")
     end
   end
 end
